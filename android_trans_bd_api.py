@@ -15,13 +15,7 @@ def_from_lang = 'zh'
 from_file_path = './string.xml'
 out_put_file_name = 'string_%s.xml'
 to_lang_map = {
-    'ru': 'ru_RU',
-    'fra': 'fr_FR',
-    'cht': 'zh_TW',
-    'jp': 'ja_JP',
-    'de': 'de_DE',
-    'it': 'it_IT',
-    'spa': 'es_ES',
+    'en': 'en_GB'
 }
 
 # 调用百度翻译api 执行翻译
