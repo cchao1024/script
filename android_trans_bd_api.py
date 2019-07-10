@@ -12,10 +12,9 @@ api = 'http://api.fanyi.baidu.com/api/trans/vip/translate'
 appid = '20190708000315910'  # 你的appid
 secretKey = 'tymR5YEUYQVkKv9aE0qa'  # 你的密钥
 def_from_lang = 'zh'
-from_file_path = './message_zh_CN.properties'
-out_put_file_name = 'message_%s.properties'
+from_file_path = './string.xml'
+out_put_file_name = 'string_%s.xml'
 to_lang_map = {
-    'en': 'en_GB',
     'ru': 'ru_RU',
     'fra': 'fr_FR',
     'cht': 'zh_TW',
@@ -24,7 +23,6 @@ to_lang_map = {
     'it': 'it_IT',
     'spa': 'es_ES',
 }
-
 
 # 调用百度翻译api 执行翻译
 def trans_bd_api(q, to_lang, from_lang=def_from_lang):
@@ -81,15 +79,16 @@ def trans_and_write(key, q):
         result = trans_bd_api(q, lang)
         out_put_file = out_put_file_name % to_lang_map.get(lang)
         with open(out_put_file, 'a') as f:
-            f.write(key + '=' + str(result) + '\n')
+            f.write('<string name="' + key + '">' + str(result) + '</string>\n')
             print('[' + out_put_file + ']   【' + key + '=' + result + '】')
-        # 非vip 不允许高频率请求接口
+            # 非vip 不允许高频率请求接口
         time.sleep(2)
 
 
 def split_trans_content():
     # 正则 待翻译的文本
-    pattern = re.compile(r'^(.*)=(.*)$')
+    # <string name="tab_name_1">说说</string>
+    pattern = re.compile(r'^.*?name="(.*)">(.*)</string>')
 
     with open(from_file_path, 'r+', encoding='utf-8') as f:
         for line in f.readlines():
