@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 import os
 
-root_path = '/Users/cchao/github/hexo/source/_posts'
+root_path = '/Users/cchao/Dev/hexo/source/_posts'
 
 
 def rename(cur_root, item, old_str, new_str):
@@ -22,4 +22,5 @@ def rename(cur_root, item, old_str, new_str):
 
 for (root, dirs, files) in os.walk(root_path):
     for item_file in files:
-        rename(root, item_file, '](../images/', '](../../images/')
+#         rename(root, item_file, '](../../images/', '](https://coding.net/u/cchao1024/p/hexo/git/raw/source/source/images/')
+        rename(root, item_file, '， 发送消息', '，发送消息')
